@@ -1,8 +1,7 @@
 <template>
   <v-app>
     <template>
-    <v-navigation-drawer :clipped="clipped" v-model="drawer" enable-resize-watcher fixed app width="300"   
-    >
+    <v-navigation-drawer :clipped="clipped" v-model="drawer" enable-resize-watcher fixed app width="300">
         <app-menu ></app-menu>
       </v-navigation-drawer>
     </template>
@@ -12,7 +11,6 @@
             <span class="title"> {{$route.name}} </span>
         </v-toolbar-title>
         <v-spacer></v-spacer>
-
           <v-menu open-on-hover offset-y >
         <template v-slot:activator="{ on }">
           <v-btn icon v-on="on">
