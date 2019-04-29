@@ -1,37 +1,43 @@
 <template>
   <v-app>
-    <v-toolbar app>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn
-        flat
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-      >
-        <span class="mr-2">Latest Release</span>
-      </v-btn>
-    </v-toolbar>
+    <template>
+    <v-navigation-drawer :clipped="clipped" v-model="drawer" enable-resize-watcher fixed app width="300"   
+    >
+        <app-menu ></app-menu>
+      </v-navigation-drawer>
+    </template>
+     <v-toolbar  dark fixed app   color="light-blue darken-4"   :clipped-left="clipped">
+        <v-toolbar-title>
+            <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+            <span class="title"> {{$route.name}} </span>
+        </v-toolbar-title>
+        <v-spacer></v-spacer>
 
-    <v-content>
-      <HelloWorld/>
-    </v-content>
+          <v-menu open-on-hover offset-y >
+        <template v-slot:activator="{ on }">
+          <v-btn icon v-on="on">
+            <v-icon large>account_circle</v-icon>
+          </v-btn>
+        </template>
+          </v-menu>
+     </v-toolbar>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+
+import AppMenu from '@/components/shared/AppMenu';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    AppMenu
   },
   data () {
     return {
-      //
+      clipped: true,
+      drawer: false,
+      fixed: false
     }
   }
 }
