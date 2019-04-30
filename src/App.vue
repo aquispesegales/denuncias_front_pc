@@ -19,6 +19,9 @@
         </template>
           </v-menu>
      </v-toolbar>
+     <v-content>
+         <router-view/>
+      </v-content>
   </v-app>
 </template>
 

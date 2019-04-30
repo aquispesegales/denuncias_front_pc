@@ -1,11 +1,22 @@
 <template>
-  <nav>    <v-list class="pt-0" dense>
+  <nav>    
+     <v-list>
+      <v-list-tile avatar>
+        <v-list-tile-avatar>
+          <img src="https://randomuser.me/api/portraits/men/85.jpg">
+        </v-list-tile-avatar>
+        Alvaro Zenon Quispe Segales
+      </v-list-tile>
+    </v-list>
+
+    
+    <v-list class="pt-0" dense>
         <v-divider></v-divider>
 
         <v-list-tile
           v-for="item in items"
           :key="item.title"
-          @click=""
+          @click="$router.push('/AtencionCasos')"
         >
           <v-list-tile-action>
             <v-icon>{{ item.icon }}</v-icon>
@@ -28,8 +39,8 @@ export default {
       return {
         drawer: true,
         items: [
-          { title: 'Home', icon: 'dashboard' },
-          { title: 'About', icon: 'question_answer' }
+          { title: 'Atencion de Casos', icon: 'dashboard' },
+          { title: 'Usuarios', icon: 'question_answer' }
         ],
         right: null
       }

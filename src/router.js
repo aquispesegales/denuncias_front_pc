@@ -7,7 +7,7 @@ export default new Router({mode: 'history',routes : [
   {
     path: '/AtencionCasos',
     component: () => import('@/views/AtencionCasos.vue'),
-    name:'Login'
+    name:'Atencion de Casos'
     
   }
 ]})
