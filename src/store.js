@@ -5,6 +5,7 @@ Vue.use(Vuex)
 
 
 import casos from '@/store/modules/casos.module.js';
+import usuario from '@/store/modules/usuario.module.js';
 
 export default new Vuex.Store({
   state: {
@@ -16,7 +17,8 @@ export default new Vuex.Store({
 
   },
   modules:{
-    casos
+    casos,
+    usuario
   }
 })
 

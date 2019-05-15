@@ -9,5 +9,11 @@ export default new Router({mode: 'history',routes : [
     component: () => import('@/views/AtencionCasos.vue'),
     name:'Atencion de Casos'
     
+  },
+  {
+    path: '/Usuario',
+    component: () => import('@/views/Usuario.vue'),
+    name:'Usuarios'
+    
   }
 ]})
