@@ -18,6 +18,22 @@ const actions = {
         })
     })
   },
+  [types.actions.deleteUsuarioPc]:({commit},usuario_id)=>{
+    return new Promise ((resolve,reject)=>{
+        Vue.prototype.$http.delete(`usuario/deleteUsuarioPc/${usuario_id}`).then(r=>{
+            resolve(r);
+        })
+    })
+  },
+  [types.actions.insertOrUpdatePc]:({commit},obj)=>{
+    return new Promise ((resolve,reject)=>{
+        Vue.prototype.$http.post(`usuario/insertOrUpdatePc`,obj).then(r=>{
+            resolve(r);
+        })
+    })
+  },
+  
+  
   [types.actions.ObtieneUsuarioMovil]:({commit},obj)=>{
     return new Promise ((resolve,reject)=>{
         Vue.prototype.$http.get(`usuario/listarUsuarioMovilTodos`).then(r=>{

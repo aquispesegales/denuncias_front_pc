@@ -4,6 +4,8 @@ export default namespace('usuario',{
     ],
     actions:[
         'ObtieneUsuarioPc',
+        'deleteUsuarioPc',
+        'insertOrUpdatePc',
         'ObtieneUsuarioMovil'
     ],
     mutations:[
