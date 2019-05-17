@@ -6,7 +6,7 @@ export default namespace('usuario',{
         'ObtieneUsuarioPc',
         'deleteUsuarioPc',
         'insertOrUpdatePc',
-        'ObtieneUsuarioMovil'
+        'Login'
     ],
     mutations:[
     ]

@@ -32,15 +32,16 @@ const actions = {
         })
     })
   },
-  
-  
-  [types.actions.ObtieneUsuarioMovil]:({commit},obj)=>{
+  [types.actions.Login]:({commit},obj)=>{
     return new Promise ((resolve,reject)=>{
-        Vue.prototype.$http.get(`usuario/listarUsuarioMovilTodos`).then(r=>{
+        Vue.prototype.$http.post(`login/verificarUsuario`,obj).then(r=>{
             resolve(r);
         })
     })
   },
+  
+  
+
 }
 export default {
   state,

@@ -15,5 +15,11 @@ export default new Router({mode: 'history',routes : [
     component: () => import('@/views/Usuario.vue'),
     name:'Usuarios'
     
+  },
+  {
+    path: '/Login',
+    component: () => import('@/views/Login.vue'),
+    name:'Login'
+    
   }
 ]})
