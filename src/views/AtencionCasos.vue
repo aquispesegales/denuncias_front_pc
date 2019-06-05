@@ -1,5 +1,24 @@
 <template>
   <v-layout justify-center>
+    <v-dialog v-model="dialog" max-width="50%">
+      <v-card>
+        <v-card-title class="headline">Evidencia Objetiva</v-card-title>
+        <v-card-text>
+          <img v-bind:src="imagenActiva" width="500" height="300">
+        </v-card-text>
+
+        <v-card-title class="headline">Lugar donde realizo la Denuncia</v-card-title>
+        <v-card-text>
+          dsdsd
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+
+          <v-btn color="green darken-1" flat="flat" @click="dialog = false">Aceptar</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
     <v-card class="mt-5 mx-auto ma-0.5" width="95%" elevation="7">
       <v-sheet
         :class="'v-sheet--offset mx-auto pa-2'"
@@ -10,6 +29,7 @@
       >
         <span class="subheading">Usuarios (Los que Atienden el Caso)</span>
       </v-sheet>
+      {{lstCasos}}
       <v-card-text class="pt-0">
         <span
           class="font-weight-light caption"
@@ -40,6 +60,9 @@
               <td style=" height: 30px;">{{props.item.descripcion}}</td>
               <td style=" height: 30px;">{{props.item.usuario_id}}</td>
               <td style=" height: 30px;">
+                <a @click="dialog=true; imagenActiva =props.item.fotoUrl">ver mas...</a>
+              </td>
+              <td style=" height: 30px;">
                 <v-btn depressed small color="primary">Recepcionar</v-btn>
               </td>
             </tr>
@@ -61,8 +84,12 @@ export default {
         { text: "Nro de Caso", value: "caso_id" },
         { text: "Descripción", value: "descripcion" },
         { text: "Usuario - Denuncia", value: "usuario_id" },
+        { text: "Mas Detalle", value: "" },
+
         { text: "", value: "" }
-      ]
+      ],
+      dialog: false,
+      imagenActiva: null
     };
   },
   mounted() {
