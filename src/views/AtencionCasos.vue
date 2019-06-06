@@ -1,5 +1,13 @@
 <template>
   <v-layout justify-center>
+    <v-dialog v-model="dialogMapa" fullscreen hide-overlay transition="dialog-bottom-transition">
+      <v-card>
+        <v-card-title class="headline">Direccción</v-card-title>
+        <v-card-text>
+          Direccion Exacta
+        </v-card-text>
+      </v-card>
+    </v-dialog>
     <v-dialog v-model="dialog" max-width="50%">
       <v-card>
         <v-card-title class="headline">Evidencia Objetiva</v-card-title>
@@ -9,7 +17,40 @@
 
         <v-card-title class="headline">Lugar donde realizo la Denuncia</v-card-title>
         <v-card-text>
-          dsdsd
+          
+          <GmapMap
+            :center="{lat:-16.4897, lng:-68.1193}"
+            :zoom="16"
+            map-type-id="terrain"
+            style="width: 500px; height: 300px"
+          >
+            <!--<GmapMarker
+              :key="index"
+              v-for="(m, index) in markers"
+              :position="m.position"
+              :clickable="true"
+              :draggable="true"
+              @click="center=m.position"
+            />-->
+
+
+
+          <GmapMarker 
+              :position="{lat: -16.4897, lng: -68.1193}"
+              :clickable="true"
+              :draggable="true"
+               @click="dialogMapa=true;"
+              
+            />
+        
+        
+
+            
+
+            
+
+
+          </GmapMap>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -29,7 +70,7 @@
       >
         <span class="subheading">Usuarios (Los que Atienden el Caso)</span>
       </v-sheet>
-      {{lstCasos}}
+      
       <v-card-text class="pt-0">
         <span
           class="font-weight-light caption"
@@ -89,6 +130,7 @@ export default {
         { text: "", value: "" }
       ],
       dialog: false,
+      dialogMapa:false,
       imagenActiva: null
     };
   },
