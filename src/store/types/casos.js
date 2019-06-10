@@ -3,7 +3,8 @@ export default namespace('casos',{
     getters:[
     ],
     actions:[
-        'ObtieneAmpliacionLugarSorteo'
+        'ObtieneAmpliacionLugarSorteo',
+        'InserUpdateCaso'
     ],
     mutations:[
     ]

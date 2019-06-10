@@ -18,6 +18,14 @@ const actions = {
         })
     })
   },
+  [types.actions.InserUpdateCaso]:({commit},obj)=>{
+    return new Promise ((resolve,reject)=>{
+        Vue.prototype.$http.post(`casos/InsertOrUpdate`,obj).then(r=>{
+            resolve(r);
+        })
+    })
+  },
+  
 }
 export default {
   state,

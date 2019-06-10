@@ -1,5 +1,34 @@
 <template>
   <v-layout justify-center>
+  <v-dialog
+      v-model="dialogRes"
+      max-width="290"
+    >
+      <v-card>
+        <v-card-title class="headline">Respuesta Al Usuario Denunciante</v-card-title>
+        <v-card-text>
+          <v-textarea
+          v-model="objInsertUpdate.respuesta_caso"
+          solo
+          name="input-7-4"
+          label="Respuesta al Usuario"
+         
+          ></v-textarea>
+        </v-card-text>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="green darken-1"
+            flat="flat"
+            @click="dialogRes = false;aceptarCaso()"
+          >
+            ACEPTAR
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
     <v-dialog v-model="dialogMapa" fullscreen hide-overlay transition="dialog-bottom-transition">
       <v-card>
         <v-card-title class="headline">Direccción</v-card-title>
@@ -104,7 +133,8 @@
                 <a @click="dialog=true; imagenActiva =props.item.fotoUrl">ver mas...</a>
               </td>
               <td style=" height: 30px;">
-                <v-btn depressed small color="primary">Recepcionar</v-btn>
+                <v-btn v-if="props.item.estado_id==1000" depressed small color="primary" @click="editar(props.item)" >Recepcionar</v-btn>
+                <span class="blue--text" v-if="props.item.estado_id==1002">Recepcionado</span>
               </td>
             </tr>
           </template>
@@ -131,11 +161,15 @@ export default {
       ],
       dialog: false,
       dialogMapa:false,
-      imagenActiva: null
+      imagenActiva: null,
+      _respuesta:null,
+      dialogRes:false,
+      objInsertUpdate:{}
     };
   },
   mounted() {
     this.cargarDatos();
+
   },
   methods: {
     cargarDatos() {
@@ -145,8 +179,21 @@ export default {
     },
     ...mapActions({
       ObtieneAmpliacionLugarSorteo:
-        typesCasos.actions.ObtieneAmpliacionLugarSorteo
-    })
+        typesCasos.actions.ObtieneAmpliacionLugarSorteo,
+        InserUpdateCaso:typesCasos.actions.InserUpdateCaso
+    }),
+    editar(obj){
+      this.objInsertUpdate = obj;
+      this.dialogRes = true;
+    },
+    aceptarCaso(){
+      this.objInsertUpdate.estado_id = 1002;
+      this.InserUpdateCaso(this.objInsertUpdate).then(r=>{
+        this.ObtieneAmpliacionLugarSorteo().then(r => {
+          this.lstCasos = r.data;
+        });
+      })
+    }
   }
 };
 </script>
