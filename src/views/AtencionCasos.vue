@@ -169,7 +169,8 @@ export default {
   },
   mounted() {
     this.cargarDatos();
-
+    const self = this;
+    setInterval(self.cargarDatos, 10000);
   },
   methods: {
     cargarDatos() {
